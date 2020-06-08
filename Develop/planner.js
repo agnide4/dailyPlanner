@@ -25,28 +25,26 @@ $(".sButton").on("click", function(){
 });
 
 currtime();
-let interval = setInterval(currtime, 15000);
-getskd();
-
+//function to check if time us current/ past or future
 function currtime(){
     console.log("currtime here");
-    console.log("tblock length" + tBlock.length)
+    console.log("tBlock length: " + tBlock.length)
     for (let i=0; i<tBlock.length; i++){
-        var element = document.getElementById(i+9)
+        console.log(i);
+        console.log(tBlock.length);
         if (i+9 === currh){
-            element.classList.add("present");
-        }else if (i+9 < currh){
-            element.classList.add("past");
-        } else {
-            element.classList.add("future");
-        }       
-    }
-}
+            tBlock[i].addClassList("present");
+        }else if (i+9 <currh){
+            tBlock[i].addClassList("future");
 
-function getskd(){
-    for (let i=0; i<tBlock.length; i++){
-        $("#i+9 .description").val(localStorage.getItem("i+9"));
+        }else {
+            tBlock[i].addClassList("past");
+        }
+            
+        }
         
+       
+}   
 
-    }
-}
+
+

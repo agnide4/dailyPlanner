@@ -1,12 +1,13 @@
 m = moment();
 console.log(m.startOf("hour").toString());
-console.log(m.hour().toString());
-currh = m.hour().toString();
+
+currh = parseInt(m.hour().toString());
 console.log(currh);
 //variables needed for functions
 //let sButton = $(".sButton");
 let tArea = $(".description");
 let tBlock = $(".time-block");
+console.log(tBlock.length);
 
 //console.log(tArea.length);
 
@@ -26,16 +27,18 @@ $(".sButton").on("click", function(){
 currtime();
 
 function currtime(){
+    console.log("here");
     
     for (let i=9; i<tBlock.length; i++){
         console.log(i);
+        console.log(tBlock.length);
         if (i === currh){
-            tBlock[i].addClass("present");
+            tBlock[i].addClassList("present");
         }else if (i<currh){
-            tBlock[i].addClass("future");
+            tBlock[i].addClassList("future");
 
         }else {
-            tBlock[i].addClass("past");
+            tBlock[i].addClassList("past");
         }
             
         }

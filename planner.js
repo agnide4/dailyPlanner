@@ -1,21 +1,20 @@
-m = moment();
-console.log(m.startOf("hour").toString());
 
+///Variables
+
+m = moment();
 currh = parseInt(m.hour().toString());
-console.log(currh);
-//variables needed for functions
-//let sButton = $(".sButton");
 let tArea = $(".description");
 let tBlock = $(".time-block");
-console.log(tBlock.length);
-
-//console.log(tArea.length);
 
 
 
+//FUNCTIONS START HERE
+
+//Show date and time on top of the page
+$("#currentDay").text(moment().toString());
 
 
-//functions start here
+//store skd to local storage
 $(".sButton").on("click", function(){
     var value = $(this).siblings(".description").val();
     var time = $(this).parent().attr("id");
@@ -24,26 +23,43 @@ $(".sButton").on("click", function(){
     localStorage.setItem(time, value);
 });
 
+//clear screen and delete local storage on click
+$(".dButton").on("click", function(){
+    var value = $(this).siblings(".description").val();
+    var time = $(this).parent().attr("id");
+
+    if (value === null){
+        return
+    }
+    else{
+        localStorage.removeItem(time, value);
+        var value = $(this).siblings(".description").val("");
+        this.value = "";
+
+    }
+     
+    
+
+    
+});
+
 currtime();
 let interval = setInterval(currtime, 15000);
 getskd();
 
 function currtime(){
-    console.log("currtime here");
-    console.log("tblock length" + tBlock.length)
+    
     for (let i=0; i<tBlock.length; i++){
        
         if (i+9 === currh){
             tBlock[i].classList.add("present");
-            //console.log(tBlock[i])
+            
         }else if (i+9 < currh){
             tBlock[i].classList.add("past");
-            //element.classList.add("past");
-            //console.log(tBlock[i])
+            
         } else {
             tBlock[i].classList.add("future");
-            //element.classList.add("future");
-            //console.log(tBlock[i])
+            
         }       
     }
 }

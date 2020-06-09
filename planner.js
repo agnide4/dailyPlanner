@@ -32,20 +32,29 @@ function currtime(){
     console.log("currtime here");
     console.log("tblock length" + tBlock.length)
     for (let i=0; i<tBlock.length; i++){
-        var element = document.getElementById(i+9)
+       
         if (i+9 === currh){
-            element.classList.add("present");
+            tBlock[i].classList.add("present");
+            //console.log(tBlock[i])
         }else if (i+9 < currh){
-            element.classList.add("past");
+            tBlock[i].classList.add("past");
+            //element.classList.add("past");
+            //console.log(tBlock[i])
         } else {
-            element.classList.add("future");
+            tBlock[i].classList.add("future");
+            //element.classList.add("future");
+            //console.log(tBlock[i])
         }       
     }
 }
 
 function getskd(){
     for (let i=0; i<tBlock.length; i++){
-        $("#i+9 .description").val(localStorage.getItem("i+9"));
+        //set p to base 9 since hour starts @9am
+        let p = i+9;
+        //use tilde to make sure string is being read as an ID//remember quotes will pass strings not variables
+        $(`#${p} .description`).val(localStorage.getItem(p));
+        
         
 
     }
